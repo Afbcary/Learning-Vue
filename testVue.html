@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h2>Updating a value which remains the same in the model and the view</h2>
+    <div id="root">
+        <input type="text" id="input" v-model="message">
+        <p>The value of the input backwards is: <i>{{reversedMessage}}</i>.</p>
+        <br>
+        <h2>Displaying a list</h2>
+        <ul>
+            <p>With basic "mustashe syntax"</p>
+            <li v-for="name in names">{{ name }}</li>
+            <p>With built in directive</p>
+            <li v-for="name in names" v-text="name"></li>
+        </ul>
+        <input type="text" v-model="newName">
+        <button v-on:click="addName">Add Name</button>
+        <p>v-on: can be replaced with @</p>
+        <p>v-on:event-name</p>
+        <h2>Working with binding</h2>
+        <button v-bind:title="title" @click="enableOtherButton">hover over me</button>
+        <p>v-bind:title can be replaced with :title </p>
+        <h2>Binding a html attribute and dynamically changing CSS.</h2>
+        <button :disabled="disabled" @click="changeColor" :class="color">Click me only after you have unlocked me</button>
+        <br>
+        <br>
+        <h2>Custom components</h2>
+        <task>task : li slot </task>
+        <p>For components, data is a function not a object</p>
+    </div>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
