@@ -1,5 +1,50 @@
+  var postOne = {
+      "id": 1,
+      "imageId": null,
+      "title": "Liquid Swords",
+      "description": "An album by GZA",
+      "url": "https://www.youtube.com/watch?v=28N2taistdk"
+  };
+  var postTwo = {
+      "id": 2,
+      "imageId": null,
+      "title": "Trogan War",
+      "description": "A podcast covering the story and context of the Iliad by Homer",
+      "url": "http://trojanwarpodcast.com/"
+  };
+
+  var blogPosts = [postOne, postTwo];
+
   Vue.component('task', {
-      template: '<li><slot></slot></li>'
+      template: `<li>
+                    <slot></slot>
+                </li>`
+  });
+
+  Vue.component('blog-post', {
+      props: ['number'],
+      template: `<div class="blog-post">
+                    <a :href="computedPost.url">{{computedPost.title}}</a>
+                    <br>
+                    <p>{{computedPost.description}}</p>
+                </div>`,
+      computed: {
+          computedPost: function() {
+              if (this.number != null) {
+                  return blogPosts[this.number];
+              }
+              return null;
+          }
+      }
+  });
+
+  Vue.component('blog-list', {
+      template: `<div>
+                    <blog-post v-for="blogPost in blogPosts"></blog-post>
+                </div>`,
+      data() {
+          return null;
+      }
   });
 
   new Vue({
@@ -11,7 +56,7 @@
           title: 'oh hi there. Please add your name to the list and come back ',
           disabled: true,
           colors: ['color-purple', 'color-red', 'color-orange', 'color-yellow', 'color-green', 'color-blue'],
-          color: '',
+          currColor: '',
           colorCounter: 0
       },
       methods: {
@@ -22,14 +67,12 @@
           },
           enableOtherButton() {
               this.disabled = !this.disabled;
-              console.log('clicked');
           },
           changeColor() {
-              console.log('color change happening!');
               if (this.colorCounter++ < this.colors.length) {
-                  this.color = this.colors[this.colorCounter]
+                  this.currColor = this.colors[this.colorCounter]
               } else {
-                  this.color = this.colors[0];
+                  this.currColor = this.colors[0];
                   this.colorCounter = 0;
               }
           }

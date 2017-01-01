@@ -21,3 +21,9 @@
     .color-blue {
         background-color: blue;
     }
+
+    .blog-post {
+        margin-top: 5px;
+        background-color: tan;
+        border-style: solid;
+    }

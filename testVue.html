@@ -27,12 +27,16 @@
         <button v-bind:title="title" @click="enableOtherButton">hover over me</button>
         <p>v-bind:title can be replaced with :title </p>
         <h2>Binding a html attribute and dynamically changing CSS.</h2>
-        <button :disabled="disabled" @click="changeColor" :class="color">Click me only after you have unlocked me</button>
+        <button :disabled="disabled" @click="changeColor" :class="currColor">Click me only after you have unlocked me</button>
         <br>
         <br>
         <h2>Custom components</h2>
         <task>task : li slot </task>
         <p>For components, data is a function not a object</p>
+        <h3>Blog Post Component</h3>
+        <blog-post number="0"></blog-post>
+        <blog-post number="1"></blog-post>
+        <!--blog-list></blog-list -->
     </div>
     <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
     <script src="main.js"></script>
